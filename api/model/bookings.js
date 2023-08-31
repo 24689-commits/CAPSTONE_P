@@ -31,6 +31,21 @@ class Bookings{
             });
         });
     }
+    addBooking(req, res) {
+        const userID = req.params.id;
+        const bookingID = req.body.id;
+    
+        const query = "INSERT INTO bookings (userID, bookingID) SET ?";
+    
+        db.query(query, [userID, bookingID], (error, results) => {
+          if (error) {
+            console.error("Error adding booking:", error);
+            res.status(500).json({ error: "Error adding booking" });
+          } else {
+            res.status(201).json({ message: "Booking added successfully" });
+          }
+        });
+      }
     updateBooking(req,res){
         const query =`
         UPDATE bookings
@@ -64,13 +79,4 @@ class Bookings{
 
 }
 module.exports = Bookings
-
-
-
-
-
-
-
-
-
 

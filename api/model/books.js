@@ -32,7 +32,7 @@ class Books {
         });
     }
 
-    registerBook(req, res) {
+    addBook(req, res) {
         const query = `
         INSERT INTO books
         SET ?;

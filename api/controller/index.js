@@ -34,30 +34,51 @@ routes.delete('/user/:id',(req,res)=>{
     Users.deleteUser(req,res)
 })
 // ==================================Books====================--========
-routes.get('/Books',(req,res)=>{
+routes.get('/books',(req,res)=>{
   Books.fetchBooks(req,res)
 })
-routes.get('/Book/:id',(req,res)=>{
+routes.get('/book/:id',(req,res)=>{
     Books.fetchBook(req,res)
 })
 routes.post('/addBook', bodyParser.json(),
 (req,res)=>{
     Books.addBook(req,res)
 })
-routes.put('/Book/:id',bodyParser.json(),
+routes.put('/book/:id',bodyParser.json(),
 (req,res)=>{
     Books.updateBook(req,res)
 })
-routes.patch('/Book/:id',bodyParser.json(),
+routes.patch('/book/:id',bodyParser.json(),
 (req,res)=>{
     Books.updateBook(req,res)
 })
-routes.delete('/Book/:id',(req,res)=>{
-    Books.deleteBooks(req,res)
+routes.delete('/book/:id',(req,res)=>{
+    Books.deleteBook(req,res)
 })
 
 
 //====================================Bookings===============================
+routes.get('/user/:id/bookings',(req,res)=>{
+    Bookings.fetchBookings(req,res)
+  })
+  routes.get('/user/:id/booking',(req,res)=>{
+    Bookings.fetchBooking(req,res)
+  })
+  routes.post('/user/:id/booking',(req,res)=>{
+    Bookings.addBooking(req,res)
+  })
+  routes.put('/user/:id/booking/:id',(req,res)=>{
+    Bookings.updateBooking(req,res)
+  })
+  routes.patch('/user/:id/booking/:id',(req,res)=>{
+    Bookings.updateBooking(req,res)
+  })
+  routes.delete('/user/:id/booking',(req,res)=>{
+    Bookings.deleteBooking(req,res)
+})
+routes.delete('/user/:id/booking/:id',(req,res)=>{
+    Bookings.deleteBookingbyid(req,res)
+})
 module.exports ={
     express,
     routes
