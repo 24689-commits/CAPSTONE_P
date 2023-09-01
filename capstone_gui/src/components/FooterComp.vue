@@ -1,7 +1,7 @@
 <template>
     <div class="col text-md-center" id="gap">
       <footer class="footer text-center mt-5">
-        <p class="padding">Copyright &copy; 2023 Dazzling Jewels. All rights reserved</p>
+        <p class="padding">Copyright &copy; FOOTER</p>
         
       </footer>
     </div>
