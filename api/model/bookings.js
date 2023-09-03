@@ -32,20 +32,34 @@ class Bookings{
         });
     }
     addBooking(req, res) {
-        const userID = req.params.id;
-        const bookingID = req.body.id;
-    
-        const query = "INSERT INTO bookings (userID, bookingID) SET ?";
-    
-        db.query(query, [userID, bookingID], (error, results) => {
-          if (error) {
-            console.error("Error adding booking:", error);
-            res.status(500).json({ error: "Error adding booking" });
+        const bookingData = {
+            userID : req.body.userID,
+            bookID : req.body.bookID,
+            collection_date: req.body.collection_date,return_date: req.body.return_date,
+            bStatus:req.body.bStatus
+          
+        };
+      
+        const query = `
+          INSERT INTO bookings
+          SET ?;
+        `;
+      
+        db.query(query, [bookingData], (err) => {
+          if (err) {
+            console.error(err);
+            res.status(500).json({
+              error: "An error occurred while adding the booking.",
+            });
           } else {
-            res.status(201).json({ message: "Booking added successfully" });
+            res.json({
+              status: res.statusCode,
+              msg: "The booking has been added successfully.",
+            });
           }
         });
       }
+      
     updateBooking(req,res){
         const query =`
         UPDATE bookings

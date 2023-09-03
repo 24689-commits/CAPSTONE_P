@@ -75,7 +75,7 @@ class Users{
 async register(req,res){
     const data = req.body
  
-    data.userPassword = await hash(data.userPassword,15)
+    // data.userPassword = await hash(data.userPassword,15)
 
     const user = {
         emailAdd : data.emailAdd,
@@ -93,30 +93,37 @@ async register(req,res){
     res.json({
         status : res.statusCode,
         token,
-        msg: "you are now registered."
+        msg: "you have been successfully registered."
     })
 })
 }
 updateUser(req,res){
-    const data =req.body
-    if(data.userPassword){
-        data.userPassword = hashSync(data.userPassword,15)
-    }
-    const query =`
-    UPDATE users
-    SET ?
-    WHERE userID=?
-    `
-    db.query(query, [data, req.params.id],(err)=>{
-       if (err) throw err
-       res.json({
-        status: statusCode,
-        msg: "The user record was updated."
+          const data = req.body;
+          if (data.userPassword) {
+            data.userPassword = hashSync(data.userPassword, 15);
+          }
+          const query = `
+            UPDATE users
+            SET ?
+            WHERE userID=?
+          `;
+          db.query(query, [data, req.params.id], (err) => {
+            if (err) {
+              console.error(err);
+              res.status(500).json({
+                status: 500,
+                msg: "An error occurred while updating the user record.",
+              });
+            } else {
+              res.json({
+                status: 200,
+                msg: "The user record was updated.",
+              });
+            }
+          });
+        
+      };
 
-       })
- 
-    })
-}
 deleteUser(req,res){
     const query = `
     DELETE FROM users
