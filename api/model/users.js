@@ -1,5 +1,5 @@
 const db = require("../config")
-// const{hash,compare,hashSync}=require('bcrypt')
+const{hash,compare,hashSync}=require('bcrypt')
 const {createToken} = require('../middleware/authenticateUser')
 class Users{
     fetchUsers(req,res){
@@ -75,7 +75,7 @@ class Users{
 async register(req,res){
     const data = req.body
  
-    // data.userPassword = await hash(data.userPassword,15)
+    data.userPassword = await hash(data.userPassword,15)
 
     const user = {
         emailAdd : data.emailAdd,
