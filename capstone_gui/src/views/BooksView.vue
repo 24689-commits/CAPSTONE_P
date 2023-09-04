@@ -2,12 +2,7 @@
   <div class="container">
     <div class="filters-container">
       <div class="search-container">
-        <input v-model="searchQuery" @input="performSearch" class="search-input" type="text" placeholder="Search books...">
-        <select v-model="sortingOption" class="form-select" @change="applySorting">
-          <option value="default">Sort By:</option>
-          <option value="nameAsc">Name: A-Z</option>
-          <option value="nameDesc">Name: Z-A</option>
-        </select>
+        <input v-model="searchQuery" @input="performSearch" class="search-input" type="text" placeholder="Search book...">
       </div>
       <div class="filters">
         <select v-model="selectedCategory" class="form-select" @change="applyCategoryFilter">
@@ -18,18 +13,22 @@
           <option value="Non-fiction">Non-fiction</option>
           <option value="Educational">Educational</option>
         </select>
+        <select v-model="sortingOption" class="form-select" @change="applySorting">
+          <option value="default">Sort By:</option>
+          <option value="nameAsc">Name: A-Z</option>
+          <option value="nameDesc">Name: Z-A</option>
+        </select> 
       </div>
     </div>
-    <div class="books-container">
+    <div class="col-md-11">
       <div class="row justify-content-center" v-if="filteredBooks">
-        <div v-for="book in filteredBooks" class="col-4" :key="book.bookID">
+        <div v-for="book in filteredBooks" class="col-3" :key="book.bookID">
           <div class="col">
             <img :src="book.bookUrl" class="card-img-top img fluid" :alt="book.bookName" />
             <div class="card-body">
               <h6 class="card-title-bold">{{ book.bookName }}</h6>
               <h6 class="card-text">Author: {{ book.author }}</h6>
               <h6 class="card-title">Category: {{ book.category }}</h6>
-              <h6 class="card-title">Quantity: {{ book.quantity }}</h6>
               <a href="./CheckoutView.vue">Borrow</a>
             </div>
           </div>
@@ -125,13 +124,12 @@ export default {
  }
  
  .search-container {
-   flex: 1;
+   display: flex-start;
    display: flex;
    align-items: center;
  }
  
  .filters {
-   flex: 1;
    display: flex;
    align-items: center;
  }
@@ -139,6 +137,10 @@ export default {
  .books-container {
    width: 100%;
  }
+ .card-img-top {
+  object-fit: cover;
+  height: 350px;
+}
  
  </style>
  
