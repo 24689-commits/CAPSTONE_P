@@ -1,9 +1,12 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import router from "@/router";
+import { useCookies } from 'vue3-cookies';
+
 
 const cUrl = "http://localhost:3001/";
-
+const {cookies} = useCookies()
 export default createStore({
   state: {
     users: [],
@@ -43,6 +46,62 @@ export default createStore({
     }
   },
   actions: {
+    // Login
+    async login(context, payload){
+      try{
+        const {msg, token, result } = (await axios.post(`${cUrl}user/login`, payload)).data
+          if (result){
+            context.commit('setUser', {result, msg})
+            cookies.set('LegitUser', {token, msg, result})
+            authUser.applyToken(token)
+            Swal.fire({
+              title: msg,
+              icon: 'success',
+              text: `Welcome back ${result?.userName}`,
+              timer: 3000
+            })
+            router.push({name: 'home'})
+          }
+        }
+        catch(error){
+          Swal.fire({
+            title: "Error",
+            icon: 'error',
+            text: msg,
+            timer: 3000
+          })
+      }
+      
+    },
+
+    // Register
+        async registerUser(context, payload){
+          try{
+            const {msg} = (await axios.post(`${cUrl}user/register`, payload)).data
+              if (msg){
+                Swal.fire({
+                  title: "Registration",
+                  icon: 'success',
+                  text: msg,
+                  timer: 3000
+                })
+                context.dispatch('fetchUsers')
+                router.push({name: 'Login'})
+              }
+              
+            }catch(error){
+              Swal.fire({
+                title: "Error",
+                icon: 'error',
+                text: msg,
+                timer: 3000
+              })
+          }
+          
+        },
+  
+    
+    // ----------------------------------
     async fetchUsers(context) {
       try {
         const response = await axios.get(`${cUrl}users`);
