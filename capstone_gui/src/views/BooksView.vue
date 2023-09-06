@@ -9,7 +9,7 @@
           <option value="">Show All</option>
           <option value="Horror">Horror</option>
           <option value="History">History</option>
-          <option value="Fiction">Fiction</option>
+          <option value="fiction">Fiction</option>
           <option value="Non-fiction">Non-fiction</option>
           <option value="Educational">Educational</option>
         </select>
@@ -17,7 +17,7 @@
           <option value="default">Sort By:</option>
           <option value="nameAsc">Name: A-Z</option>
           <option value="nameDesc">Name: Z-A</option>
-        </select> 
+        </select>
       </div>
     </div>
     <div class="col-md-11">
@@ -29,21 +29,35 @@
               <h6 class="card-title-bold">{{ book.bookName }}</h6>
               <h6 class="card-text">Author: {{ book.author }}</h6>
               <h6 class="card-title">Category: {{ book.category }}</h6>
-              <a href="./CheckoutView.vue">Borrow</a>
+              <button class="view" @click="viewDetails(book)">View More</button>
             </div>
           </div>
         </div>
       </div>
       <div v-else class="row justify-content-center">
-        <SpinnerCompVue />
+        <SpinnerCompVue /> 
+      </div>
+    </div>
+    <div v-if="showDetail" class="book-detail">
+      <div class="book-info">
+        <img :src="selectedBook.bookUrl" class="card-img-top img fluid" :alt="selectedBook.bookName" />
+        <h2>{{ selectedBook.bookName }}</h2>
+        <p><strong>Author:</strong> {{ selectedBook.author }}</p>
+        <p><strong>Category:</strong> {{ selectedBook.category }}</p>
+        <a class="btn btn-secondary" href="/checkout">Borrow</a>
+
+      </div>
+      <div class="close-button">
+        <button @click="closeDetail">Close</button>
       </div>
     </div>
   </div>
 </template>
 
-  
+
 <script>
 import SpinnerCompVue from '../components/SpinnerComp.vue';
+
 export default {
   components: {
     SpinnerCompVue
@@ -73,15 +87,9 @@ export default {
     return {
       searchQuery: '',
       selectedCategory: '',
-      selectedGender: '',
       sortingOption: 'default',
-      product:{
-        showPopover:false,
-        bookUrl: '',
-        bookName: '',
-        category: '',
-        author: '',
-      }
+      showDetail: false,
+      selectedBook: null,
     };
   },
   methods: {
@@ -89,16 +97,15 @@ export default {
     },
     applyCategoryFilter() {
     },
-    clearFilters() {
-      this.selectedCategory = '';
-    },
     applySorting() {
     },
-    showPopover(book) {
-      book.showPopover = true;
+    viewDetails(book) {
+      this.selectedBook = book;
+      this.showDetail = true;
     },
-    closeModal(book) {
-      book.showPopover = false;
+    closeDetail() {
+      this.showDetail = false;
+      this.selectedBook = null;
     },
   },
   mounted() {
@@ -107,40 +114,58 @@ export default {
 };
 </script>
 
- <style scoped>
- .container {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   height: 100vh; 
-   padding: 20px;
- }
- 
- .filters-container {
-   display: flex;
-   justify-content: space-between;
-   width: 100%;
-   margin-bottom: 20px;
- }
- 
- .search-container {
-   display: flex-start;
-   display: flex;
-   align-items: center;
- }
- 
- .filters {
-   display: flex;
-   align-items: center;
- }
- 
- .books-container {
-   width: 100%;
- }
- .card-img-top {
+
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; 
+  padding: 20px;
+}
+
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+}
+
+.books-container {
+  width: 100%;
+}
+
+.card-img-top {
   object-fit: cover;
   height: 350px;
 }
- 
- </style>
- 
+
+.book-detail {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.close-button {
+  text-align: right;
+}
+
+</style>
