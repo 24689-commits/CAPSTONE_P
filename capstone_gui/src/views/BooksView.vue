@@ -44,8 +44,7 @@
         <h2>{{ selectedBook.bookName }}</h2>
         <p><strong>Author:</strong> {{ selectedBook.author }}</p>
         <p><strong>Category:</strong> {{ selectedBook.category }}</p>
-        <a class="btn btn-secondary" href="/checkout">Borrow</a>
-
+        <router-link :to="{ name: 'checkout', params: { bookId: selectedBook.bookID } }" class="btn btn-secondary">Borrow</router-link>
       </div>
       <div class="close-button">
         <button @click="closeDetail">Close</button>
@@ -100,9 +99,10 @@ export default {
     applySorting() {
     },
     viewDetails(book) {
-      this.selectedBook = book;
-      this.showDetail = true;
-    },
+    this.selectedBook = book;
+    this.showDetail = true;
+    this.$store.dispatch('fetchBooks', book.bookID);
+  },
     closeDetail() {
       this.showDetail = false;
       this.selectedBook = null;
