@@ -130,9 +130,9 @@ export default createStore({
     },
     async updateUser(context, editUserData) {
       try {
-        if (editUserData.userDOB) {
-          editUserData.userDOB = new Date(editUserData.userDOB).toISOString().slice(0, 19).replace('T', ' ');
-        }
+        // if (editUserData.userDOB) {
+        //   editUserData.userDOB = new Date(editUserData.userDOB).toISOString().slice(0, 19).replace('T', ' ');
+        // }
     
         let { msg } = (await axios.put(`${cUrl}user/${editUserData.userID}`, editUserData)).data;
         if (msg) {
