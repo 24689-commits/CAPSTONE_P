@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <!-- ==============USERS================= -->
+        <!-- :::::::::::::::::::::::::::::::::::::::::::::  USERS  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
         <h2>USERS</h2>
         <button class="btn btn-primary" @click="showAddUserModal = true">Add User</button>
 
@@ -154,10 +154,6 @@
                     <div class="mb-3">
                         <label for="userGender">Role:</label>
                         <input type="text" id="userRole" v-model="newUser.userRole" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="userDOB">Date of Birth:</label>
-                        <input type="date" id="userDOB" v-model="newUser.userDOB" required>
                     </div>
                     <div class="mb-3">
                         <label for="userEmail">Email:</label>

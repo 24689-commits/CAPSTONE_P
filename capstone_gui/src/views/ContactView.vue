@@ -4,7 +4,7 @@
         <div class="row align-items-center">
           <div class="col ms-6">
             <h1 class="top">Drop us a Line</h1>
-            <p>Contact us on <span>hello@dazzlingjewels.agency, +27 (0)21 486 1860</span> or <br> submit the form below.</p>
+            <p>Contact us on <span>hello@knowledgehub.com, +27 (0)21 486 1860</span> or <br> submit the form below.</p>
             <form action="https://formspree.io/f/xgebdjdv" method="POST" @submit.prevent="validateForm">
               <div class="mb-4">
                 <input type="text" class="form-control" ref="fnameInput" name="first_name" placeholder="First Name">
@@ -37,7 +37,7 @@
                   <li>Blue River Park</li>
                   <li>2 Car Street, Observatory</li>
                   <li class="line">Cape Town, South Africa</li>
-                  <li class="break">cpt@dazzlingjewels.agency</li>
+                  <li class="break">cpt@knowledgehub.com</li>
                   <li class="break">+27 (0)21 486 1860</li>
                 </ul>
               </p>
@@ -50,7 +50,7 @@
                   <li>17 Belville South</li>
                   <li>Bryanston</li>
                   <li class="line">Johannesburg, South Africa</li>
-                  <li class="break">jhb@dazzlingjewels.agency</li>
+                  <li class="break">jhb@knowledgehub.com</li>
                   <li class="break">+27 (0)11 706 0279</li>
                 </ul>
               </p>
