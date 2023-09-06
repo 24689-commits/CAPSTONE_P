@@ -32,6 +32,9 @@ export default createStore({
     setBooks(state, Books) {
       state.Books = Books;
     },
+    setSelectedBook(state, bookId) {
+      state.selectedBook = state.Books.find((book) => book.bookID === bookId);
+    },
     setBook(state, Book) {
       state.Book = Book;
     },
@@ -168,6 +171,17 @@ export default createStore({
         console.error(error);
       }
     },
+    ///////////////////
+    async fetchBooks(context, bookId) {
+      try {
+        const response = await axios.get(`${cUrl}books`);
+        context.commit("setBooks", response.data.results);
+        context.commit("setSelectedBook", bookId);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    ///////////////////////////////
     async addBook(context, newBook) {
       try {
         let {msg} = (await axios.post(`${cUrl}addBook`, newBook)).data;
