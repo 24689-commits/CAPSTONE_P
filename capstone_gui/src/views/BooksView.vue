@@ -35,8 +35,9 @@
         </div>
       </div>
       <div v-else class="row justify-content-center">
-        <SpinnerCompVue /> 
-      </div>
+        <!-- spinner -->
+        <SpinnerComp/>
+     </div>
     </div>
     <div v-if="showDetail" class="book-detail">
       <div class="book-info">
@@ -55,11 +56,10 @@
 
 
 <script>
-import SpinnerCompVue from '../components/SpinnerComp.vue';
-
+import SpinnerComp from '@/components/SpinnerComp.vue';
 export default {
   components: {
-    SpinnerCompVue
+   SpinnerComp
   },
   computed: {
     Books() {
