@@ -104,7 +104,7 @@ export default createStore({
         },
   
     
-    // ----------------------------------
+    // :::::::::::::::::::::::::::::::::::::::::::::::::::USERS::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     async fetchUsers(context) {
       try {
         const response = await axios.get(`${cUrl}users`);
@@ -162,7 +162,7 @@ export default createStore({
         console.error(error);
       }
     },
-
+//::::::::::::::::::::::::::::::::::::::::::::::BOOKS:::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     async fetchBooks(context) {
       try {
         const response = await axios.get(`${cUrl}books`);
