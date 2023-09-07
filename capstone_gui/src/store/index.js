@@ -199,7 +199,7 @@ export default createStore({
     },
     async updateBook(context, editBookData) {
       try {
-        let {msg} = (await axios.put(`${cUrl}book/${editBookData.prodID}`, editBookData)).data;
+        let {msg} = (await axios.put(`${cUrl}book/${editBookData.bookID}`, editBookData)).data;
         if (msg){
           context.dispatch('fetchBooks'); 
           Swal.fire({
