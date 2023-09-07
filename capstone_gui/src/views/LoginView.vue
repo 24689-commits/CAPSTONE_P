@@ -38,7 +38,7 @@
   
   .image-container {
     padding: 20px;
-    text-align: center; /* Center-align the image and text */
+    text-align: center; 
   }
   
   .card-wrapper {
@@ -51,7 +51,7 @@
   }
   
   .gray-background {
-    background-color: #f0f0f0; /* Add your desired background color */
+    background-color: #f0f0f0;
   }
   
   .card-title {

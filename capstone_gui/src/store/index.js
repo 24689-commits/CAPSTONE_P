@@ -78,7 +78,7 @@ export default createStore({
     },
 
     // Register
-        async registerUser(context, payload){
+        async register(context, payload){
           try{
             const {msg} = (await axios.post(`${cUrl}user/register`, payload)).data
               if (msg){
