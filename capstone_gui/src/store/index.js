@@ -5,7 +5,7 @@ import router from "@/router";
 import { useCookies } from 'vue3-cookies';
 
 
-const cUrl = "http://localhost:3001/";
+const cUrl = "https://capstone-qfm7.onrender.com/";
 const {cookies} = useCookies()
 export default createStore({
   state: {

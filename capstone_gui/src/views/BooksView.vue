@@ -20,28 +20,25 @@
         </select>
       </div>
     </div>
-    <div class="col-md-11">
-      <div class="row justify-content-center" v-if="filteredBooks">
-        <div v-for="book in filteredBooks" class="col-3" :key="book.bookID">
-          <div class="col">
-            <img :src="book.bookUrl" class="card-img-top img fluid" :alt="book.bookName" />
-            <div class="card-body">
-              <h6 class="card-title-bold">{{ book.bookName }}</h6>
-              <h6 class="card-text">Author: {{ book.author }}</h6>
-              <h6 class="card-title">Category: {{ book.category }}</h6>
-              <button class="view" @click="viewDetails(book)">View More</button>
-            </div>
+    <div class="row" v-if="filteredBooks.length">
+      <div class="col-sm-4" v-for="book in filteredBooks" :key="book.bookID">
+        <div class="card mb-3">
+          <img :src="book.bookUrl" class="card-img-top img-fluid" :alt="book.bookName" />
+          <div class="card-body">
+            <h6 class="card-title-bold">{{ book.bookName }}</h6>
+            <h6 class="card-text">Author: {{ book.author }}</h6>
+            <h6 class="card-title">Category: {{ book.category }}</h6>
+            <button class="view" @click="viewDetails(book)">View More</button>
           </div>
         </div>
       </div>
-      <div v-else class="row justify-content-center">
-        <!-- spinner -->
-        <SpinnerComp/>
-     </div>
+    </div>
+    <div v-else class="row justify-content-center">
+      <h2>No books found</h2>
     </div>
     <div v-if="showDetail" class="book-detail">
       <div class="book-info">
-        <img :src="selectedBook.bookUrl" class="card-img-top img fluid" :alt="selectedBook.bookName" />
+        <img :src="selectedBook.bookUrl" class="card-img-top img-fluid" :alt="selectedBook.bookName" />
         <h2>{{ selectedBook.bookName }}</h2>
         <p><strong>Author:</strong> {{ selectedBook.author }}</p>
         <p><strong>Category:</strong> {{ selectedBook.category }}</p>
@@ -149,6 +146,14 @@ export default {
 .card-img-top {
   object-fit: cover;
   height: 350px;
+}
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  width: 350px;
+}
+.card:hover {
+  transform: scale(1.03);
 }
 
 .book-detail {
