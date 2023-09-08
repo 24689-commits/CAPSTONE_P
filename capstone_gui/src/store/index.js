@@ -3,6 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import router from "@/router";
 import { useCookies } from 'vue3-cookies';
+import { setAuthToken, clearAuthToken } from "../services/authService";
 
 
 const cUrl = "https://capstone-qfm7.onrender.com/";
@@ -49,59 +50,84 @@ export default createStore({
     }
   },
   actions: {
-    // Login
-    async login(context, payload){
-      try{
-        const {msg, token, result } = (await axios.post(`${cUrl}user/login`, payload)).data
-          if (result){
-            context.commit('setUser', {result, msg})
-            cookies.set('LegitUser', {token, msg, result})
-            authUser.applyToken(token)
-            Swal.fire({
-              title: msg,
-              icon: 'success',
-              text: `Welcome back ${result?.userName}`,
-              timer: 3000
-            })
-            router.push({name: 'home'})
-          }
-        }
-        catch(error){
-          Swal.fire({
-            title: "Error",
-            icon: 'error',
-            text: msg,
-            timer: 3000
-          })
-      }
-      
-    },
+
+       // Login
+async login(context, payload){
+  try {
+    const response = await axios.post(`${cUrl}login`, payload);
+    const { msg, token, result } = response.data;
+
+    if (result) {
+      context.commit('setUser', { result, msg });
+      cookies.set('LegitUser', { token, msg, result });
+      setAuthToken(token);
+
+      Swal.fire({
+        title: msg,
+        icon: 'success',
+        text: `Welcome back ${result?.userName}`,
+        timer: 3000
+      });
+
+      router.push({ name: 'home' });
+    }
+  } catch (error) {
+    console.log('clicked');
+    const msg = error.response?.data?.msg || 'An error occurred during login';
+
+    Swal.fire({
+      title: 'Error',
+      icon: 'error',
+      text: msg,
+      timer: 3000
+    })
+  }
+},
+
+
+// logout
+
+logout(context) {
+  clearAuthToken(); // Clear the token
+  context.commit("setUser", null); 
+},
+
+
 
     // Register
-        async register(context, payload){
-          try{
-            const {msg} = (await axios.post(`${cUrl}user/register`, payload)).data
-              if (msg){
-                Swal.fire({
-                  title: "Registration",
-                  icon: 'success',
-                  text: msg,
-                  timer: 3000
-                })
-                context.dispatch('fetchUsers')
-                router.push({name: 'Login'})
-              }
-              
-            }catch(error){
-              Swal.fire({
-                title: "Error",
-                icon: 'error',
-                text: msg,
-                timer: 3000
-              })
-          }
+    async register(context, payload) {
+      try {
+        const response = await axios.post(`${cUrl}register`, payload);
+        console.log(response); 
+        const { msg, token, result } = response.data;
+
+        if (result) {
+          context.commit("setUser", { result, msg });
+          cookies.set('LegitUser', { token, msg, result });
+
+          Swal.fire({
+            title: msg,
+            icon: 'success',
+            text: `You have been registered ${result?.userName}`,
+            timer: 3000,
+            position: 'top-end',
+            toast: true,
+          }).then(() => {
+            router.push({ name: 'Login' });
+          });
+        }
           
-        },
+      } catch (error) {
+        const msg = error.response?.data?.msg || 'An error occurred during registration';
+
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: msg,
+          timer: 3000
+        });
+      }
+    },
   
     
     // :::::::::::::::::::::::::::::::::::::::::::::::::::USERS::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
