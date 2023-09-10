@@ -27,7 +27,7 @@ const routes = [
     component: () => import('../views/CheckoutView.vue')
   },
   {
-    path: '/checkout/:bookId', // Add the parameter here
+    path: '/checkout/:bookID', 
     name: 'checkout',
     component: () => import('../views/CheckoutView.vue'),
   },

@@ -36,13 +36,13 @@
     <div v-else class="row justify-content-center">
       <h2>No books found</h2>
     </div>
-    <div v-if="showDetail" class="book-detail">
+    <div v-if="showDetail" class="book-detail full-screen">
       <div class="book-info">
         <img :src="selectedBook.bookUrl" class="card-img-top img-fluid" :alt="selectedBook.bookName" />
         <h2>{{ selectedBook.bookName }}</h2>
         <p><strong>Author:</strong> {{ selectedBook.author }}</p>
         <p><strong>Category:</strong> {{ selectedBook.category }}</p>
-        <router-link :to="{ name: 'checkout', params: { bookId: selectedBook.bookID } }" class="btn btn-secondary">Borrow</router-link>
+        <router-link :to="{ name: 'checkout', params: { bookID: selectedBook.bookID } }" class="btn btn-secondary">Borrow</router-link>
       </div>
       <div class="close-button">
         <button @click="closeDetail">Close</button>
@@ -169,8 +169,31 @@ export default {
   flex: 1;
 }
 
+.full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-y: auto;
+}
+
+.book-info {
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
 .close-button {
   text-align: right;
 }
+
 
 </style>

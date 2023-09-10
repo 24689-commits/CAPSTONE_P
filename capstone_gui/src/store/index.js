@@ -88,7 +88,7 @@ async login(context, payload){
 // logout
 
 logout(context) {
-  clearAuthToken(); // Clear the token
+  clearAuthToken();
   context.commit("setUser", null); 
 },
 
@@ -252,6 +252,16 @@ logout(context) {
       } catch (error) {
         console.error(error);
       }
+    }
+  },
+  async borrowBook(context, bookID) {
+    try {
+      await axios.post(`${cUrl}user/:id/booking`, { bookID });
+      context.commit('markBookAsBorrowed', bookID);
+      return Promise.resolve('Book successfully borrowed.');
+    } catch (error) {
+      console.error(error);
+      return Promise.reject('Failed to borrow the book.');
     }
   },
   modules: {}
