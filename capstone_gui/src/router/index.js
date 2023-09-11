@@ -21,11 +21,11 @@ const routes = [
     name: 'Books',
     component: () => import('../views/BooksView.vue')
   },
-  {
-    path: '/Checkout',
-    name: 'Checkout',
-    component: () => import('../views/CheckoutView.vue')
-  },
+  // {
+  //   path: '/Checkout',
+  //   name: 'Checkout',
+  //   component: () => import('../views/CheckoutView.vue')
+  // },
   {
     path: '/checkout/:bookID', 
     name: 'checkout',

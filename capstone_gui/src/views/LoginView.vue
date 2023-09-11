@@ -2,8 +2,10 @@
   <div class="container">
     <div class="home align-center">
       <div class="row justify-content-center">
-        <div class="col-md-6 image-container">
-          <!-- Your profile image -->
+        <div class="col-md-6">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/hjGv0VTy/2221e8be-f780-4528-b1c1-19fbce13f220.jpg0" class="img-fluid" alt="Profile Image">
+          </div>
         </div>
         <div class="col-md-6 card-wrapper gray-background">
           <div class="card">
@@ -12,10 +14,10 @@
               <!-- Registration Form -->
               <div v-if="isRegistering">
                 <div class="form-group">
-                  <input v-model="userName" type="text" class="form-control" placeholder="User Name">
+                  <input v-model="userName" type="text" class="form-control" placeholder="Name">
                 </div>
                 <div class="form-group">
-                  <input v-model="userSurname" type="text" class="form-control" placeholder="User Surname">
+                  <input v-model="userSurname" type="text" class="form-control" placeholder="Surname">
                 </div>
                 <div class="form-group">
                   <input v-model="userRole" type="text" class="form-control" placeholder="User Role">
@@ -24,7 +26,7 @@
                   <input v-model="cellNumber" type="text" class="form-control" placeholder="Cell Number">
                 </div>
                 <div class="form-group">
-                  <input v-model="userImage" type="text" class="form-control" placeholder="User Image URL">
+                  <input v-model="userImage" type="text" class="form-control" placeholder="Image Link">
                 </div>
                 <div class="form-group">
                   <input v-model="registerEmail" type="email" class="form-control" placeholder="Email Address">

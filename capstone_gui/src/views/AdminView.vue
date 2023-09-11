@@ -126,9 +126,9 @@
         <div class="modal-content">
           <h3>Add User</h3>
           <form @submit.prevent="addUser">
-            <!-- <div>
+            <div>
               <spinner-comp v-if="isLoadingAddUser" />
-            </div> -->
+            </div>
             <div class="mb-3">
               <label for="userFirstName">First Name:</label>
               <input type="text" id="userFirstName" v-model="newUser.userName" required>
@@ -199,12 +199,12 @@
   </template>
   
   <script>
-//   import SpinnerCompVue from "@/components/SpinnerComp.vue";
+  import SpinnerCompVue from "@/components/SpinnerComp.vue";
   
   export default {
-    // components: {
-    //   SpinnerCompVue,
-    // },
+    components: {
+      SpinnerCompVue,
+    },
     data() {
       return {
         showAddBookModal: false,

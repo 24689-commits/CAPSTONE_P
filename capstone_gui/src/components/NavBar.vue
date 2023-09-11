@@ -21,7 +21,7 @@
                     <router-link to="/Books">Books</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link to="/Checkout">Checkout</router-link>
+                    <router-link to="/checkout/:bookID">Checkout</router-link>
                   </li>
                   <li class="nav-item">
                     <router-link to="/Contact">Contact</router-link>
