@@ -20,7 +20,7 @@
                   <input v-model="userSurname" type="text" class="form-control" placeholder="Surname">
                 </div>
                 <div class="form-group">
-                  <input v-model="userRole" type="text" class="form-control" placeholder="User Role">
+                  <input type="text" class="form-control" value="student" disabled>
                 </div>
                 <div class="form-group">
                   <input v-model="cellNumber" type="text" class="form-control" placeholder="Cell Number">
@@ -87,7 +87,7 @@ export default {
       const payload = {
         userName: this.userName,
         userSurname: this.userSurname,
-        userRole: this.userRole,
+        userRole: "Student",
         cellNumber: this.cellNumber,
         userImage: this.userImage,
         emailAdd: this.registerEmail,

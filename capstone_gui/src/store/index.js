@@ -2,15 +2,14 @@ import { createStore } from "vuex";
 import axios from "axios";
 import Swal from "sweetalert2";
 import router from "@/router";
-import { useCookies } from "vue3-cookies";
-import { setAuthToken, clearAuthToken } from "../services/authService";
-
+import { useCookies, createCookie, getCookie, deleteCookie } from "vue3-cookies";
+import { setAuthToken, clearAuthToken, getAuthToken } from "../services/authService";
 const cUrl = "https://capstone-qfm7.onrender.com/";
 const { cookies } = useCookies();
 export default createStore({
   state: {
     users: [],
-    user: null,
+    user: [],
     Books: [],
     Book: null,
     spinner: false,
@@ -19,7 +18,11 @@ export default createStore({
   },
   getters: {
     getUsers: (state) => state.users,
+    getUser: (state) => state.user,
     getBooks: (state) => state.Books,
+    getAuthToken(state) {
+      return state.authToken;
+    },
   },
   mutations: {
     setUsers(state, users) {
@@ -45,6 +48,10 @@ export default createStore({
     },
     setMsg(state, msg) {
       state.msg = msg;
+    },
+    setUser(state, user) {
+      state.user = user;
+      state.userRole = user?.result?.userRole;
     },
   },
   actions: {
@@ -128,6 +135,17 @@ export default createStore({
         console.error(error);
       }
     },
+    async fetchUserProfile(context, id) {
+      try {
+        const response = await axios.get(`${cUrl}user/${id}`);
+        context.commit("setUser", response.data.result); 
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    
+        
+   
     async addUser(context, newUser) {
       try {
         let { msg } = (await axios.post(`${cUrl}register`, newUser)).data;
@@ -242,16 +260,35 @@ export default createStore({
         console.error(error);
       }
     },
+  
+ //::::::::::::::::::::::::::::::::::::USER PROFILE::::::::::::::::::::::::::::::::::::::::
+
+//  async fetchUserProfile({ commit }, payload) { // Receive the payload here
+//   const { id, authToken } = payload; // Extract the ID and authToken from the payload
+//   try {
+//     const response = await axios.get(`${cUrl}user/${id}`, {
+//       headers: {
+//         Authorization: `Bearer ${authToken}`,
+//       },
+//     });
+
+//     if (response.data.result.length === 0) {
+//       console.warn('User profile data is empty.');
+//       commit('setUser', null);
+//     } else {
+//       commit('setUser', response.data.result);
+//     }
+
+//     return response;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// },
+
+
   },
-  async borrowBook(context, bookID) {
-    try {
-      await axios.post(`${cUrl}user/:id/booking`, { bookID });
-      context.commit("markBookAsBorrowed", bookID);
-      return Promise.resolve("Book successfully borrowed.");
-    } catch (error) {
-      console.error(error);
-      return Promise.reject("Failed to borrow the book.");
-    }
-  },
+
+
   modules: {},
 });

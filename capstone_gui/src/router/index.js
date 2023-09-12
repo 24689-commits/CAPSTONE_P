@@ -25,14 +25,8 @@ const routes = [
     path: '/checkout',
   name: 'checkout',
   component: () => import('../views/CheckoutView.vue'),
-  props: true, // This allows passing props via route para
+  props: true, 
   },
-  
-  // {
-  //   path: '/checkout/:bookID', 
-  //   name: 'checkout',
-  //   component: () => import('../views/CheckoutView.vue'),
-  // },
   {
     path: '/Contact',
     name: 'Contact',
@@ -47,6 +41,14 @@ const routes = [
     path: '/Admin',
     name: 'Admin',
     component: () => import('../views/AdminView.vue')
+  },
+  {
+    path: '/profile',
+    name: 'UserProfile',
+    component: () => import('../views/UserProfile.vue'),
+    meta: {
+      requiresAuth: true, // Requires authentication to access the profile page
+    },
   },
   
   
