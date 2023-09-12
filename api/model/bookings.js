@@ -17,10 +17,11 @@ class Bookings{
     fetchBookings(req, res) {
        
         const query = `
-        SELECT b.bookingID, u.userID, bk.bookID, b.collection_date, b.return_date, b.bStatus AS status
+        SELECT b.bookingID, u.userID, bk.bookID, u.userName, bk.bookName, bk.author, bk.category, bk.quantity, bk.bookUrl,  b.collection_date, b.return_date, b.bStatus AS status
         FROM bookings AS b
         INNER JOIN users AS u ON b.userID = u.userID
         INNER JOIN books AS bk ON b.bookID = bk.bookID;
+        WHERE u.userID = ?
         `
         db.query(query, (err, results) => {
             if (err) throw err;
@@ -31,13 +32,12 @@ class Bookings{
         });
     }
     addBooking(req, res) {
-      const { userID, bookID, collection_date, return_date } = req.body; 
         const query = `
-          INSERT INTO bookings (userID, bookID, collection_date, return_date)
-          VALUES ( ?, ?, ?, ?);
+          INSERT INTO bookings
+          SET ?
         `;
       
-        db.query(query, [userID, bookID, collection_date, return_date], (err) => {
+        db.query(query, [req.body], (err, result) => {
           if (err) {
             console.error(err);
             res.status(500).json({
@@ -47,6 +47,7 @@ class Bookings{
             res.json({
               status: res.statusCode,
               msg: "The booking has been added successfully.",
+              result
             });
           }
         });
@@ -55,7 +56,7 @@ class Bookings{
         const query =`
         UPDATE bookings
         SET ?
-        WHERE userID=?
+        WHERE bookingID= ? ;
         `
         db.query(query, [req.body, req.params.id],(err)=>{
            if (err) throw err
@@ -70,9 +71,9 @@ class Bookings{
     deleteBooking(req,res){
         const query = `
         DELETE FROM bookings
-        WHERE userID =${req.params.id}
+        WHERE bookingID = ?
         `
-        db.query(query,(err)=>{
+        db.query(query, [req.params.id], (err)=>{
             if (err) throw err
             res.json({
                 status:res.statusCode,
@@ -80,6 +81,7 @@ class Bookings{
             })
         })
     }
+    
 
 
 }
