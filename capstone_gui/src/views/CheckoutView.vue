@@ -4,7 +4,7 @@
     <p>User Name: {{ userName }} {{ userSurname }}</p>
     <h3>Selected Books:</h3>
     <ul>
-      <li v-for="book in selectedBooks" :key="book.bookID">
+      <li v-for="book in selectedBook" :key="book.bookID">
         {{ book.bookName }} by {{ book.author }}
         <button @click="removeFromWishlist(book)">Remove</button>
       </li>
@@ -31,7 +31,7 @@ export default {
   methods: {
     async fetchUser() { // Define the fetchUser function
       try {
-        const response = await axios.get(`${"https://capstone-qfm7.onrender.com/"}user/:id`); // Adjust the API route accordingly
+        const response = await axios.get(`${"https://capstone-qfm7.onrender.com/"}user/:id/`); // Adjust the API route accordingly
         this.userName = response.data.userName;
         this.userSurname = response.data.userSurname;
       } catch (error) {
