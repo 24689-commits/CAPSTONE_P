@@ -21,16 +21,18 @@ const routes = [
     name: 'Books',
     component: () => import('../views/BooksView.vue')
   },
-  // {
-  //   path: '/Checkout',
-  //   name: 'Checkout',
-  //   component: () => import('../views/CheckoutView.vue')
-  // },
   {
-    path: '/checkout/:bookID', 
-    name: 'checkout',
-    component: () => import('../views/CheckoutView.vue'),
+    path: '/checkout',
+  name: 'checkout',
+  component: () => import('../views/CheckoutView.vue'),
+  props: true, // This allows passing props via route para
   },
+  
+  // {
+  //   path: '/checkout/:bookID', 
+  //   name: 'checkout',
+  //   component: () => import('../views/CheckoutView.vue'),
+  // },
   {
     path: '/Contact',
     name: 'Contact',

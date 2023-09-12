@@ -185,7 +185,7 @@ export default createStore({
       }
     },
     ///////////////////
-    async fetchBooks(context, bookId) {
+    async fetchBook(context, bookId) {
       try {
         const response = await axios.get(`${cUrl}books`);
         context.commit("setBooks", response.data.results);

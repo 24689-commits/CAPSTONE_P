@@ -29,11 +29,13 @@
             <h6 class="card-text">Author: {{ book.author }}</h6>
             <h6 class="card-title">Category: {{ book.category }}</h6>
             <button class="view" @click="viewDetails(book)">View More</button>
+            <button @click="addToWishlist(book.bookID)">Add to Wishlist</button>
           </div>
         </div>
       </div>
     </div>
     <div v-else class="row justify-content-center">
+      <spinner-comp/>
       <h2>No books found</h2>
     </div>
     <div v-if="showDetail" class="book-detail full-screen">
@@ -42,7 +44,6 @@
         <h2>{{ selectedBook.bookName }}</h2>
         <p><strong>Author:</strong> {{ selectedBook.author }}</p>
         <p><strong>Category:</strong> {{ selectedBook.category }}</p>
-        <router-link :to="{ name: 'checkout', params: { bookID: selectedBook.bookID } }" class="btn btn-secondary">Borrow</router-link>
       </div>
       <div class="close-button">
         <button @click="closeDetail">Close</button>
@@ -53,7 +54,7 @@
 
 
 <script>
-import SpinnerComp from '@/components/SpinnerComp.vue';
+import SpinnerComp from '../components/SpinnerComp.vue';
 export default {
   components: {
    SpinnerComp
@@ -104,10 +105,19 @@ export default {
       this.showDetail = false;
       this.selectedBook = null;
     },
+    addToWishlist(bookID) {
+    // Instead of just pushing the bookID, push the entire book object
+    const selectedBook = this.Books.find(book => book.bookID === bookID);
+
+    if (selectedBook) {
+      this.$router.push({ name: 'checkout', params: { selectedBook } });
+    }
+  },
   },
   mounted() {
     this.$store.dispatch('fetchBooks');
   },
+ 
 };
 </script>
 

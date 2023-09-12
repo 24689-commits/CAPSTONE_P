@@ -1,50 +1,68 @@
 <template>
-  <div class="container">
-    <div v-if="selectedBook" class="book-detail full-screen">
-      <div class="book-info">
-        <img :src="selectedBook.bookUrl" class="card-img-top img-fluid" :alt="selectedBook.bookName" />
-        <h2>{{ selectedBook.bookName }}</h2>
-        <p><strong>Author:</strong> {{ selectedBook.author }}</p>
-        <p><strong>Category:</strong> {{ selectedBook.category }}</p>
-        <button @click="borrowBook(selectedBook.bookID)" class="btn btn-primary">Borrow</button>
-      </div>
-      <div class="close-button">
-        <router-link :to="{ name: 'Books' }" class="btn btn-secondary">Back to Books</router-link>
-      </div>
-    </div>
+  <div>
+    <h2>Checkout Page</h2>
+    <p>User Name: {{ userName }} {{ userSurname }}</p>
+    <h3>Selected Books:</h3>
+    <ul>
+      <li v-for="book in selectedBooks" :key="book.bookID">
+        {{ book.bookName }} by {{ book.author }}
+        <button @click="removeFromWishlist(book)">Remove</button>
+      </li>
+    </ul>
+    <button @click="checkout">Checkout</button>
   </div>
 </template>
 
 <script>
-import { useCookies } from 'vue3-cookies';
-import { setAuthToken, clearAuthToken } from "../services/authService";
+import axios from 'axios'; // Import Axios for making API requests
 
 export default {
-  computed: {
-    selectedBook() {
-      // Retrieve the selected book from the store or route params
-      // You may need to update this logic based on your store structure
-      return this.$store.state.selectedBook;
-    },
+  data() {
+    return {
+      userName: '', // Populate this with the user's name from your store
+      userSurname: '', // Populate this with the user's surname from your store
+      selectedBook: [], // An array to store selected books
+    };
+  },
+  created() {
+    // Fetch user information here and populate userName and userSurname
+    this.fetchUser(); // Call the fetchUser function
   },
   methods: {
-    borrowBook(bookID) {
-      // Implement the borrowBook action to send a request to your API
-      // to borrow the selected book
-      this.$store.dispatch('borrowBook', bookID)
-        .then((message) => {
-          // Handle success, e.g., show a success message
-          console.log(message);
+    async fetchUser() { // Define the fetchUser function
+      try {
+        const response = await axios.get(`${"https://capstone-qfm7.onrender.com/"}user/:id`); // Adjust the API route accordingly
+        this.userName = response.data.userName;
+        this.userSurname = response.data.userSurname;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    addToWishlist(book) {
+      // Add the selected book to the wishlist
+      this.selectedBook.push(book);
+    },
+    removeFromWishlist(book) {
+      // Remove the selected book from the wishlist
+      const index = this.selectedBook.findIndex(b => b.bookID === book.bookID);
+      if (index !== -1) {
+        this.selectedBook.splice(index, 1);
+      }
+    },
+    checkout() {
+      // Send a request to the server to complete the checkout
+      const selectedBookIds = this.selectedBook.map(book => book.bookID);
+      axios.post(`${"https://capstone-qfm7.onrender.com/"}user/:id/booking`, { bookIDs: selectedBookIds })
+        .then(response => {
+          // Handle successful checkout (e.g., show a success message)
+          console.log('Checkout successful.');
         })
-        .catch((error) => {
-          // Handle failure, e.g., show an error message
+        .catch(error => {
+          // Handle error (e.g., show an error message)
           console.error(error);
         });
     },
+    
   },
 };
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>
