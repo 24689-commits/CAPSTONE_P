@@ -1,36 +1,22 @@
 const db = require("../config")
 class Bookings{
-    // fetchBookings(req, res) {
+  fetchBookings(req, res) {
        
-    //     const query = `
-    //     SELECT bookingID, userID, bookID, collection_date, return_date, bstatus AS status
-    //     FROM bookings 
-    //     `;
-    //     db.query(query, (err, results) => {
-    //         if (err) throw err;
-    //         res.json({
-    //             status: res.statusCode,
-    //             results
-    //         });
-    //     });
-    // }
-    fetchBookings(req, res) {
-       
-        const query = `
-        SELECT b.bookingID, u.userID, bk.bookID, u.userName, bk.bookName, bk.author, bk.category, bk.quantity, bk.bookUrl,  b.collection_date, b.return_date, b.bStatus AS status
-        FROM bookings AS b
-        INNER JOIN users AS u ON b.userID = u.userID
-        INNER JOIN books AS bk ON b.bookID = bk.bookID;
-        WHERE u.userID = ?
-        `
-        db.query(query, (err, results) => {
-            if (err) throw err;
-            res.json({
-                status: res.statusCode,
-                results
-            });
+    const query = `
+    SELECT b.bookingID, u.userID, bk.bookID, u.userName, bk.bookName, bk.author, bk.category, bk.quantity, bk.bookUrl,  b.collection_date, b.return_date, b.bStatus AS status
+    FROM bookings AS b
+    INNER JOIN users AS u ON b.userID = u.userID
+    INNER JOIN books AS bk ON b.bookID = bk.bookID;
+    WHERE u.userID = ?
+    `
+    db.query(query,  [req.params.id], (err, result) => {
+        if (err) throw err;
+        res.json({
+            status: res.statusCode,
+            result
         });
-    }
+    });
+}
     addBooking(req, res) {
         const query = `
           INSERT INTO bookings
