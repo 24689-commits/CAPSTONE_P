@@ -1,68 +1,68 @@
 <template>
-  <div>
-    <h2>Checkout Page</h2>
-    <p>User Name: {{ userName }} {{ userSurname }}</p>
-    <h3>Selected Books:</h3>
-    <ul>
-      <li v-for="book in selectedBook" :key="book.bookID">
-        {{ book.bookName }} by {{ book.author }}
-        <button @click="removeFromWishlist(book)">Remove</button>
-      </li>
-    </ul>
-    <button @click="checkout">Checkout</button>
+  <div class="container">
+    <div v-if="wishlist.length > 0">
+      <h2>Your Wishlist</h2>
+      <ul>
+        <li class="row" v-for="book in wishlist" :key="book.bookID">
+          <div class="col-md-6">
+          <img :src="book.bookUrl" class="card-img-top img-fluid" :alt="book.bookName" />
+        </div>
+        <div class="col-md-6">
+          {{ book.bookName }} by {{ book.author }}
+          <button @click="removeFromWishlist(book.bookID)">Remove</button>
+        </div>
+        </li>
+      </ul>
+      <button @click="checkoutAll">Proceed to Checkout</button>
+    </div>
+    <div v-else>
+      <p>Your wishlist is empty.</p>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'; // Import Axios for making API requests
+import { mapState, mapActions } from "vuex";
 
 export default {
-  data() {
-    return {
-      userName: '', // Populate this with the user's name from your store
-      userSurname: '', // Populate this with the user's surname from your store
-      selectedBook: [], // An array to store selected books
-    };
-  },
-  created() {
-    // Fetch user information here and populate userName and userSurname
-    this.fetchUser(); // Call the fetchUser function
+  computed: {
+    ...mapState(["wishlist"]),
   },
   methods: {
-    async fetchUser() { // Define the fetchUser function
+    ...mapActions(["removeFromWishlist", "fetchUserBookings", "addUserBooking"]),
+    async checkoutAll() {
       try {
-        const response = await axios.get(`${"https://capstone-qfm7.onrender.com/"}user/:id/`); // Adjust the API route accordingly
-        this.userName = response.data.userName;
-        this.userSurname = response.data.userSurname;
+        const promises = this.wishlist.map(async (book) => {
+          const bookingData = {
+            bookID: book.bookID,
+          };
+
+         
+          return this.addUserBooking({
+            userId: this.user.userId, 
+            data: bookingData,
+          });
+        });
+
+        const results = await Promise.all(promises);
+
+        if (results.every((result) => result)) {
+          this.wishlist.forEach((book) => this.removeFromWishlist(book.bookID));
+
+          this.fetchUserBookings(this.user.userId);
+        } else {
+        }
       } catch (error) {
         console.error(error);
       }
     },
-    addToWishlist(book) {
-      // Add the selected book to the wishlist
-      this.selectedBook.push(book);
-    },
-    removeFromWishlist(book) {
-      // Remove the selected book from the wishlist
-      const index = this.selectedBook.findIndex(b => b.bookID === book.bookID);
-      if (index !== -1) {
-        this.selectedBook.splice(index, 1);
-      }
-    },
-    checkout() {
-      // Send a request to the server to complete the checkout
-      const selectedBookIds = this.selectedBook.map(book => book.bookID);
-      axios.post(`${"https://capstone-qfm7.onrender.com/"}user/:id/booking`, { bookIDs: selectedBookIds })
-        .then(response => {
-          // Handle successful checkout (e.g., show a success message)
-          console.log('Checkout successful.');
-        })
-        .catch(error => {
-          // Handle error (e.g., show an error message)
-          console.error(error);
-        });
-    },
-    
   },
 };
 </script>
+
+<style scoped>
+.card-img-top {
+  width: 100px;
+  height: 100px;
+}
+</style>

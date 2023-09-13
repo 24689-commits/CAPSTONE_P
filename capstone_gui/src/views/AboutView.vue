@@ -1,4 +1,5 @@
 <template>
+<div class="image-fluid">
   <div class="container">
     <header>
       <h1>The Knowledge Hub</h1>
@@ -40,9 +41,13 @@
       </p>
     </section>
   </div>
+  </div>
 </template>
 
 <style scoped>
+.image-fluid{
+  background-image: url('https://i.postimg.cc/j56F9jgh/solid-light-grey-simple-background-767953.jpg');
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;

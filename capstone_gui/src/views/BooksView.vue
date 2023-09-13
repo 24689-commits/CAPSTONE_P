@@ -1,4 +1,5 @@
 <template>
+  <div class="image-fluid">
   <div class="container">
     <div class="filters-container">
       <div class="search-container">
@@ -50,6 +51,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 
@@ -105,12 +107,14 @@ export default {
       this.showDetail = false;
       this.selectedBook = null;
     },
-    addToWishlist(bookID) {
-    // Instead of just pushing the bookID, push the entire book object
-    const selectedBook = this.Books.find(book => book.bookID === bookID);
-
-    if (selectedBook) {
-      this.$router.push({ name: 'checkout', params: { selectedBook } });
+    async addToWishlist(bookID) {
+    try {
+      const selectedBook = this.Books.find(book => book.bookID === bookID);
+      if (selectedBook) {
+        await this.$store.dispatch('addToWishlist', selectedBook);
+      }
+    } catch (error) {
+      console.error(error);
     }
   },
   },
@@ -123,12 +127,16 @@ export default {
 
 
 <style scoped>
+.image-fluid{
+  background-image: url('https://i.postimg.cc/j56F9jgh/solid-light-grey-simple-background-767953.jpg');
+}
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh; 
   padding: 20px;
+
+
 }
 
 .filters-container {

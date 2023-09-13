@@ -7,7 +7,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <ul class="navbar-nav ms-auto mb-0 mb-lg-0">
                 <li class="nav-item">
                   <router-link to="/Login">Login</router-link>
                 </li>
@@ -33,7 +33,7 @@
                   <router-link to="/Admin">Admin</router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link to="/profile">User Profile</router-link>
+                  <router-link to="/profile">Profile</router-link>
                 </li>
                 
               </ul>
@@ -55,11 +55,9 @@ export default {
 
 <style scoped>
 .container-fluid {
-  background-color: #AAA8A8;
-  margin-top: 0;
+  background-color: #8e6f6f;
+ padding: 0!important;
+
 }
-img {
-  width: 80px;
-  height: 50px;
-}
+
 </style>

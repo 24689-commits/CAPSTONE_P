@@ -3,7 +3,6 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <!-- Left Column for Image -->
           <div class="col-md-6">
             <img
               src="https://i.postimg.cc/sfNWn9wc/7c039dd45d88f828766cc8cf5fa09f23.jpg"
@@ -11,7 +10,6 @@
               class="img-fluid"
             />
           </div>
-          <!-- Right Column for Message -->
           <div class="col-md-6">
             <p>Welcome to the Knowledge Hub</p>
           </div>

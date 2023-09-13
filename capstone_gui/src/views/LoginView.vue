@@ -1,4 +1,5 @@
 <template>
+<div class="image-fluid">
   <div class="container">
     <div class="home align-center">
       <div class="row justify-content-center">
@@ -54,6 +55,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -103,32 +105,39 @@ export default {
 </script>
 
 <style scoped>
+.image-fluid{
+  background-image: url('https://i.postimg.cc/j56F9jgh/solid-light-grey-simple-background-767953.jpg');
+}
 .container {
+  width: 100%;
+  height: 100vh; 
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .home {
-  display: flex;
-}
-
-.image-container {
-  padding: 20px;
+  width: 100%;
+  max-width: 800px; 
   text-align: center;
 }
 
 .card-wrapper {
+  width: 50%;
+  background-color: #f5f5f5; 
+  border-radius: 10px;
   padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.gray-background {
-  background-color: #f0f0f0;
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .card-title {
-  text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
 }
@@ -137,44 +146,19 @@ export default {
   margin-bottom: 15px;
 }
 
-.form-control {
+.btn-success, .btn-primary {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+}
+.image-container {
+  text-align: center;
 }
 
-.btn {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
+.img-fluid {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.btn-success {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-}
-
-.btn-success:hover {
-  background-color: #1e7e34;
-}
-
-.btn-link {
-  color: #007bff;
-  text-decoration: underline;
-  background-color: transparent;
-  border: none;
-}
 </style>
+

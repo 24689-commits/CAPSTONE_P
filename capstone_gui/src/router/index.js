@@ -25,7 +25,6 @@ const routes = [
     path: '/checkout',
   name: 'checkout',
   component: () => import('../views/CheckoutView.vue'),
-  props: true, 
   },
   {
     path: '/Contact',
@@ -46,9 +45,6 @@ const routes = [
     path: '/profile',
     name: 'UserProfile',
     component: () => import('../views/UserProfile.vue'),
-    meta: {
-      requiresAuth: true, // Requires authentication to access the profile page
-    },
   },
   
   

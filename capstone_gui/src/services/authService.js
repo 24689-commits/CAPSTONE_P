@@ -18,3 +18,4 @@ export function clearAuthToken() {
 export function isAuthenticated() {
   return !!getAuthToken();
 }
+

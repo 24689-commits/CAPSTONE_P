@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <NavBar />
-    <main>
       <router-view />
-    </main>
     <FooterComp />
   </div>
 </template>
@@ -21,19 +19,5 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 
-main {
-  flex-grow: 1;
-}
-.footer {
-  background-color: rgb(178, 173, 173);
-  text-align: center;
-  padding: 1rem;
-
-}
 </style>
