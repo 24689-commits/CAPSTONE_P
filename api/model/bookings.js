@@ -47,7 +47,7 @@ class Bookings{
         db.query(query, [req.body, req.params.id],(err)=>{
            if (err) throw err
            res.json({
-            status: statusCode,
+            status: res.statusCode,
             msg: "The record has been updated successfully."
 
            })

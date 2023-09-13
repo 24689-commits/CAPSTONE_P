@@ -73,7 +73,7 @@ routes.get('/user/:id/bookings',(req,res)=>{
   routes.patch('/user/:id/booking/:id',(req,res)=>{
     Bookings.updateBooking(req,res)
   })
-  routes.delete('/user/:id/booking',(req,res)=>{
+  routes.delete('/user/:id/bookings',(req,res)=>{
     Bookings.deleteBooking(req,res)
 })
 routes.delete('/user/:id/booking/:id',(req,res)=>{
