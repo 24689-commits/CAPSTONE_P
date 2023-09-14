@@ -36,7 +36,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-sm-6 col-xs-12">
-              <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+              <p class="copyright-text">Copyright &copy; {{ currentYear }} All Rights Reserved by The Knowledge Hub
            <a href="#">Scanfcode</a>.
               </p>
             </div>
@@ -58,14 +58,19 @@
   
   <script>
   export default {
-  
+
+    data() {
+    return {
+      currentYear: new Date().getFullYear(),
+    };
+  },
   }
   </script>
   
   <style scoped>
   .site-footer
 {
-  background-color:#26272b;
+  background-color:#55739F;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;

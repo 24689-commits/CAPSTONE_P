@@ -1,15 +1,11 @@
 <template>
 <div class="image-fluid">
-  <div class="container">
-    <div class="home align-center">
-      <div class="row justify-content-center">
+    <div class="card mb-3">
+      <div class="row g-0">
         <div class="col-md-6">
-          <div class="image-container">
             <img src="https://i.postimg.cc/hjGv0VTy/2221e8be-f780-4528-b1c1-19fbce13f220.jpg0" class="img-fluid" alt="Profile Image">
-          </div>
         </div>
-        <div class="col-md-6 card-wrapper gray-background">
-          <div class="card">
+        <div class="col-md-6">
             <div class="card-body">
               <h3 class="card-title">{{ isRegistering ? "REGISTER" : "WELCOME" }}</h3>
               <!-- Registration Form -->
@@ -45,16 +41,15 @@
                 </div>
                 <div class="form-group">
                   <input v-model="loginPassword" type="password" class="form-control" placeholder="Password">
-                </div>
-                <button @click="handleLogin" class="btn btn-primary">Login</button>
+                </div >
+                <button @click="handleLogin" class="btn btn-success">Login</button>
+                <button @click="toggleAccountRecovery" class="btn btn-link">Can't access account?</button> |
                 <button @click="toggleRegistration" class="btn btn-link">Register</button>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
 </template>
 
@@ -105,41 +100,34 @@ export default {
 </script>
 
 <style scoped>
+.btn-link{
+  text-decoration: none;
+  color: black;
+}
 .image-fluid{
   background-image: url('https://i.postimg.cc/j56F9jgh/solid-light-grey-simple-background-767953.jpg');
-}
-.container {
-  width: 100%;
-  height: 100vh; 
+  height: 90vh; 
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
 }
 
-.home {
-  width: 100%;
-  max-width: 800px; 
-  text-align: center;
-}
 
-.card-wrapper {
-  width: 50%;
-  background-color: #f5f5f5; 
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  background-color: #D9D9D9; 
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
   font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .form-group {
@@ -154,10 +142,9 @@ export default {
 }
 
 .img-fluid {
-  max-width: 100%;
-  max-height: 100%;
-  height: auto;
-  width: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 </style>
