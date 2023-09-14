@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1>User Profile</h1>
-      <div v-if="user">
-          <img :src="user.userImage" alt="User Image" />
-          <p><strong>Name:</strong> {{ userName, 'cvhjk' }} {{ userSurname }}</p>
-          <p><strong>Email:</strong> {{ emailAdd }}</p>
-          <p><strong>Cell Number:</strong> {{ user.cellNumber }}</p>
+      <div v-if="result">
+          <img :src="result.userImage" alt="User Image" />
+          <p><strong>Name:</strong> {{ result.userName}} {{ result.userSurname }}</p>
+          <p><strong>Email:</strong> {{ result.emailAdd }}</p>
+          <p><strong>Cell Number:</strong> {{ result.cellNumber }}</p>
     </div>
     <div v-else>
       <p>Loading user profile...</p>
@@ -14,34 +14,22 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { useCookies } from 'vue3-cookies';
+const {cookies} = useCookies()
 
 export default {
   computed: {
-    ...mapState(['user']),
-    ...mapGetters(['getAuthToken']), 
+    user(){
+      return this.$store.state.user || cookies.get("LegitUser")
+    },
+    result() {
+      return this.user?.result
+    }
+  
   },
   mounted() {
-    if (this.user && this.user.userID) { 
-      this.fetchUserProfile();
-    } else {
-      console.log('User data is not available.');
-    }
-  },
-  methods: {
-    async fetchUserProfile() {
-      const userId = this.user.userID;
-
-      try {
-        this.dispatch('fetchUserProfile', {
-          id: userId,
-        });
-
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  },
+    console.log(this.result);
+  }
 };
 </script>
 

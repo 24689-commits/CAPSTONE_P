@@ -29,7 +29,7 @@
                 <li class="nav-item">
                   <router-link to="/FAQs">FAQs</router-link>
                 </li>
-                <li class="nav-item" v-show="userRole === 'librarian'">
+                <li class="nav-item" v-show="role == 'librarian'">
                   <router-link to="/Admin">Admin</router-link>
                 </li>
                 <li class="nav-item">
@@ -44,11 +44,17 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
+import { useCookies } from "vue3-cookies";
+const {cookies} = useCookies()
 export default {
   computed: {
-    ...mapState(["userRole"]),
+    user(){
+     return this.$store.state.user || cookies.get("LegitUser")
+    },
+    role(){
+      return this.user?.result?.userRole || cookies.get("LegitUser")?.result[0].userRole
+      
+    }
   },
 };
 </script>

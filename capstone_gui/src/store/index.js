@@ -129,8 +129,6 @@ async login(context, payload) {
     });
   }
 },
-
-
     // logout
 
     logout(context) {
@@ -141,16 +139,16 @@ async login(context, payload) {
     // Register
     async register(context, payload) {
       try {
-        const response = await axios.post(`${cUrl}register`, payload);
-        console.log(response);
-        const { msg, result } = response.data;
+        const {data} = await axios.post(`${cUrl}register`, payload);
+        console.log(data);
+        const { msg, result } = data;
 
-        if (result) {
+        if (msg) {
           context.commit("setUser", { result, msg });
           Swal.fire({
             title: msg,
             icon: "success",
-            text: `You have been registered ${result?.userName}`,
+            text: `You have been registered successfully`,
             timer: 3000,
           });
           router.push({ name: "Login" });

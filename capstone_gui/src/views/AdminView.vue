@@ -2,6 +2,7 @@
     <div class="container-fluid">
       <h2>BOOKS</h2>
       <button class="btn btn-primary" @click="showAddBookModal = true">Add Book</button>
+      <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
@@ -121,6 +122,7 @@
           </tr>
         </tbody>
       </table>
+    </div>
   
       <div v-if="showAddUserModal" class="modal-over">
         <div class="modal-content">

@@ -23,6 +23,8 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import { useCookies} from "vue3-cookies";
+const {cookies} = useCookies()
 
 export default {
   computed: {
