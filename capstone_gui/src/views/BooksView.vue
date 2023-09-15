@@ -24,7 +24,7 @@
       <div class="row" v-if="filteredBooks.length">
         <div class="col-lg-4" v-for="book in filteredBooks" :key="book.bookID">
           <div class="card mb-4">
-            <img :src="book.bookUrl" class="card-img-top img-fluid"  :alt="book.bookName" style="height:200px;" />
+            <img :src="book.bookUrl" class="card-img-top img-fluid"  :alt="book.bookName" style="height:250px;" />
             <div class="card-body">
               <h6 class="card-title-bold">{{ book.bookName }}</h6>
               <h6 class="card-text">Author: {{ book.author }}</h6>
@@ -50,7 +50,7 @@
           <button class="btn btn-danger" @click="closeDetail">Close</button>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 </template>
 
@@ -162,8 +162,8 @@ export default {
 }
 
 .card-img-top {
-  height: 200px;
-  object-fit: cover;
+  height: 350px !important;
+  object-fit: unset !important;
 }
 .card {
   margin-top: 20px;
@@ -190,8 +190,8 @@ export default {
 
 .book-info {
   flex: -1;
-  height: 400px;
-  width: 00px;
+  height: auto;
+  width: 450px;
 }
 
 .full-screen {

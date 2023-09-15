@@ -4,16 +4,18 @@
       <h2>Your Wishlist</h2>
       <ul>
         <li class="row" v-for="book in wishlist" :key="book.bookID">
+          <div class="col-md-3">
+            <img :src="book.bookUrl" class="card-img-top img-fluid" :alt="book.bookName" />
+          </div>
           <div class="col-md-6">
-          <img :src="book.bookUrl" class="card-img-top img-fluid" :alt="book.bookName" />
-        </div>
-        <div class="col-md-6">
-          {{ book.bookName }} by {{ book.author }}
-          <button @click="removeFromWishlist(book.bookID)">Remove</button>
-        </div>
+            <p><strong>{{ book.bookName }}</strong> by {{ book.author }}</p>
+          </div>
+          <div class="col-md-3">
+            <button @click="removeFromWishlist(book.bookID)">Remove</button>
+          </div>
         </li>
       </ul>
-      <button @click="checkoutAll">Proceed to Checkout</button>
+      <button @click="checkoutAll" class="checkout-button">Proceed to Checkout</button>
     </div>
     <div v-else>
       <p>Your wishlist is empty.</p>
@@ -29,9 +31,12 @@ const {cookies} = useCookies()
 export default {
   computed: {
     ...mapState(["wishlist"]) || cookies.get("LegitUser"),
+    user(){
+    cookies.get("LegitUser")
+    }
   },
   mounted() {
-    this.whishlist
+    this.wishlist;
   },
   methods: {
     ...mapActions(["removeFromWishlist", "fetchUserBookings", "addUserBooking"]),
@@ -66,11 +71,71 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
 }
-.card-img-top {
-  width: 100px;
-  height: 100px;
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.col-md-6 {
+  flex: 1;
+}
+
+.card-img-top {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+p {
+  font-size: 18px;
+  color: #555;
+  margin-top: 20px;
+}
+
+.checkout-button {
+  margin-top: 20px;
+}
+
 </style>
+
+
