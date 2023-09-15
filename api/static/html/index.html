@@ -8,6 +8,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-top: 20px;
         }
         th, td {
             border: 1px solid black;
@@ -17,41 +18,120 @@
         th {
             background-color: #F2F2F2;
         }
+        h1 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>Dazzling Jewels</h1>
+    <h1>API Endpoint Table</h1>
     <table>
         <thead>
-            <h2>USERS ROUTE</h2>
             <tr>
-                <th>Methods</th>
-                <th>Path</th>
+                <th>HTTP Method</th>
+                <th>Endpoint</th>
                 <th>Description</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>GET</td>
-                <td>/api/</td>
-                <td>Get to our home page</td>
+                <td>POST</td>
+                <td>/login</td>
+                <td>User login</td>
             </tr>
             <tr>
                 <td>GET</td>
-                <td>/api/Users</td>
-                <td>Retrieve a list of users.</td>
+                <td>/users</td>
+                <td>Get all users</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/user/:id</td>
+                <td>Get a specific user by ID</td>
             </tr>
             <tr>
                 <td>POST</td>
-                <td>/api/Users</td>
-                <td>Create a new user.</td>
+                <td>/register</td>
+                <td>User registration</td>
             </tr>
             <tr>
                 <td>PUT</td>
-                <td>/api/Users/:id</td>
-                <td>Update user information.</td>
+                <td>/user/:id</td>
+                <td>Update user by ID</td>
             </tr>
-        </tbody>
-    </table>
-</body>
-</html>
+            <tr>
+                <td>PATCH</td>
+                <td>/user/:id</td>
+                <td>Update user by ID (Partial)</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/user/:id</td>
+                <td>Delete user by ID</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/books</td>
+                <td>Get all books</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/book/:id</td>
+                <td>Get a specific book by ID</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/addBook</td>
+                <td>Add a new book</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/book/:id</td>
+                <td>Update book by ID</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>/book/:id</td>
+                <td>Update book by ID (Partial)</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/book/:id</td>
+                <td>Delete book by ID</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/user/:id/bookings</td>
+                <td>Get all bookings for a user</td>
+            </tr>
+            <!-- GET /user/:id/booking - Get a specific booking for a user by ID -->
+            <tr>
+                <td>GET</td>
+                <td>/user/:id/booking</td>
+                <td>Get a specific booking for a user by ID</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/user/:id/booking</td>
+                <td>Add a new booking for a user</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/user/:id/booking/:id</td>
+                <td>Update booking for a user by ID</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>/user/:id/booking/:id</td>
+                <td>Update booking for a user by ID (Partial)</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/user/:id/bookings</td>
+                <td>Delete all bookings for a user</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/user/:id/booking/:id</td>
+                <td>Delete a specific booking for a user </td>
+            </tr>
