@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 import axios from "axios";
 import Swal from "sweetalert2";
 import router from "@/router";
-import { useCookies, createCookie, getCookie, deleteCookie } from "vue3-cookies";
+import { useCookies  } from "vue3-cookies";
 import { setAuthToken, clearAuthToken, getAuthToken } from "../services/authService";
 const cUrl = "https://capstone-qfm7.onrender.com/";
 const { cookies } = useCookies();
@@ -96,37 +96,37 @@ export default createStore({
 
 
     // Login
-async login(context, payload) {
-  try {
-    const response = await axios.post(`${cUrl}login`, payload);
-    const { msg, token, result } = response.data;
-
-    if (result) {
-      context.commit("setToken", token);
-      context.commit("setUser", { result, msg });
-      cookies.set("LegitUser", { token, msg, result });
-      setAuthToken(token);
-
-      Swal.fire({
-        title: msg,
-        icon: "success",
-        text: `Welcome back ${result?.userName}`,
-        timer: 3000,
-      });
-
-      router.push({ name: "home" });
-    }
-  } catch (error) {
-    console.log("clicked");
-    const msg =
-      error.response?.data?.msg || "An error occurred during login";
-
-    Swal.fire({
-      title: "Error",
-      icon: "error",
-      text: msg,
-      timer: 3000,
-    });
+    async login(context, payload) {
+      try {
+        const response = await axios.post(`${cUrl}login`, payload);
+        const { msg, token, result } = response.data;
+    
+        if (result) {
+          context.commit("setToken", token);
+          context.commit("setUser", { result, msg });
+          cookies.set("LegitUser", { token, msg, result });
+          setAuthToken(token);
+    
+          Swal.fire({
+            title: msg,
+            icon: "success",
+            text: `Welcome back ${result?.userName}`,
+            timer: 3000,
+          });
+    
+          router.push({ name: "home" });
+        } else {
+          Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: msg || "An error occurred",
+            timer: 3000,
+          });
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+  
+    
   }
 },
     // logout

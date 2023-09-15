@@ -67,6 +67,7 @@ export default {
       this.$store.dispatch("logout");
       cookies.remove("LegitUser");
       this.$router.push("/Login");
+  
     },
   },
 };
