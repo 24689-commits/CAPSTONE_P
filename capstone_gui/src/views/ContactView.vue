@@ -114,6 +114,9 @@
   </script>
   
   <style>
+  #contact{
+    background-color: #D2D2D2;
+  }
   
   div h1{
     padding-bottom: 20px;

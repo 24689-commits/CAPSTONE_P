@@ -175,7 +175,8 @@ async login(context, payload) {
         console.error(error);
       }
     },
-   
+    
+    //:::::::::::::::::USER PROFILE:::::::::::::::::
     async fetchUserProfile(context, id) {
       try {
         const response = await axios.get(`${cUrl}user/${id}`);
@@ -185,6 +186,46 @@ async login(context, payload) {
         console.error(error);
       }
     },
+    async updateUserProfile(context, updatedUser) {
+      try {
+        const userId = context.state.user.userId;
+        const response = await axios.put(`${cUrl}user/${userId}`, updatedUser);
+  
+        if (response.data.msg) {
+          context.commit("setUser", response.data.result);
+  
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Profile updated successfully",
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  
+    async deleteUserProfile(context) {
+      try {
+        const userId = context.state.user.userId; // Get the user's ID from the state
+        const response = await axios.delete(`${cUrl}user/${userId}`);
+  
+        if (response.data.msg) {
+          context.commit("setUser", null);
+          context.dispatch("logout");
+  
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Profile deleted successfully",
+          });
+          router.push({ name: "Login" });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     
     
         

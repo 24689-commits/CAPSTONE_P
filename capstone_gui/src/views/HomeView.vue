@@ -4,14 +4,14 @@
       <div class="col-md-6 offset-md-3">
         <div class="position-relative">
           <div class="welcome">
-            <h1>Welcome to The Knowledge Hub</h1>
+            <h1 class="slide-in-left">Welcome to The Knowledge Hub</h1>
           </div>
           <img
             src="https://i.pinimg.com/564x/eb/03/d5/eb03d57ebf68a097d78f3ce9771ea393.jpg"
             class="card-img img-top img-fluid custom-img"
             alt="profile image"
           />
-          <div class="text-overlay">
+          <div class="text-overlay fade-in">
             <p class="text">Opening Time : 08:30</p>
             <p class="text">Closing Time : 15:00</p>
             <p class="text">Monday - Friday</p>
@@ -70,4 +70,32 @@ export default {};
   width: 100%;
   height: 85vh;
 }
+.fade-in {
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.slide-in-left {
+  animation: slideInLeft 1s ease-in-out;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 </style>
+
+

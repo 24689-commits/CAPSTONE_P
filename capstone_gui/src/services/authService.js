@@ -1,4 +1,4 @@
-// authService.js
+
 import { ref } from 'vue';
 
 const token = ref(null);

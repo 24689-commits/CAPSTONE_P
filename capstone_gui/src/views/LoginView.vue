@@ -114,6 +114,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -141,12 +142,22 @@ export default {
   methods: {
     ...mapActions(["login", "register"]),
     handleLogin() {
-      const payload = {
-        emailAdd: this.loginEmail,
-        userPassword: this.loginPassword,
-      };
-      this.login(payload);
-    },
+  if (!this.loginEmail || !this.loginPassword) {
+    Swal.fire({
+      title: "Error",
+      icon: "error",
+      text: "Please provide both email and password.",
+      timer: 3000,
+    });
+    return;
+  }
+
+  const payload = {
+    emailAdd: this.loginEmail,
+    userPassword: this.loginPassword,
+  };
+  this.login(payload);
+},
     handleRegister() {
       this.submitted = true;
       this.validateName();
@@ -159,7 +170,7 @@ export default {
         const payload = {
           userName: this.userName,
           userSurname: this.userSurname,
-          userRole: "tudent",
+          userRole: "student",
           cellNumber: this.cellNumber,
           userImage: this.userImage,
           emailAdd: this.registerEmail,
@@ -225,11 +236,16 @@ export default {
 
 <style scoped>
 .image-fluid{
+  width: 100%;
+  overflow-x: hidden;
   height: 120vh;
 }
 .btn-link {
   text-decoration: none;
   color: black;
+}
+.btn-link:hover{
+  color: #3032b8;
 }
 
 .image-fluid {

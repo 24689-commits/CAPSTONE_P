@@ -182,7 +182,7 @@
             </div>
             <div class="mb-3">
               <label for="editCellnumber">Cellphone number:</label>
-              <input type="date" id="editCellnumber" v-model="editUserData.cellNumber" required>
+              <input type="text" id="editCellnumber" v-model="editUserData.cellNumber" required>
             </div>
             <div class="mb-3">
               <label for="editUserEmail">Email:</label>
@@ -234,7 +234,7 @@
           userName: "",
           userSurname: "",
           userRole: "",
-          cellNumber: null,
+          cellNumber: "",
           emailAdd: "",
           userImage: "",
         },
@@ -243,7 +243,7 @@
           userName: "",
           userSurname: "",
           userRole: "",
-          cellNumber: null,
+          cellNumber: "",
           emailAdd: "",
           userImage: "",
         },

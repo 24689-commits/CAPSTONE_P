@@ -12,42 +12,45 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/about',
+    path: '/about11',
     name: 'about',
     component: () => import('../views/AboutView.vue')
   },
   {
-    path: '/Books',
+    path: '/Books11',
     name: 'Books',
     component: () => import('../views/BooksView.vue')
   },
   {
-    path: '/checkout',
+    path: '/checkout11',
   name: 'checkout',
   component: () => import('../views/CheckoutView.vue'),
   },
   {
-    path: '/Contact',
+    path: '/Contact11',
     name: 'Contact',
     component: () => import('../views/ContactView.vue')
   },
   {
-    path: '/FAQs',
+    path: '/FAQs11',
     name: 'FAQs',
     component: () => import('../views/FaqView.vue')
   },
   {
-    path: '/Admin',
+    path: '/Admin11',
     name: 'Admin',
     component: () => import('../views/AdminView.vue')
   },
   {
-    path: '/profile',
+    path: '/profile11',
     name: 'UserProfile',
     component: () => import('../views/UserProfile.vue'),
   },
-  
-  
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: () => import('../views/LogoutView.vue'),
+  }, 
 ]
 
 const router = createRouter({

@@ -1,6 +1,8 @@
 <template>
+  <div class="background">
+  <div class="container">
     <div class="faqs-container">
-      <header class="faqs-header">
+      <header class="faqs-header bounce-animation">
         <h1 class="faqs-title">Frequently Asked Questions</h1>
       </header>
   
@@ -32,6 +34,8 @@
         </p>
       </section>
     </div>
+  </div>
+  </div>
   </template>
   
   <script>
@@ -41,6 +45,9 @@
   </script>
   
   <style scoped>
+  .background{
+    background-color: #D2D2D2;
+  }
   .faqs-container {
     max-width: 800px;
     margin: 0 auto;
@@ -53,6 +60,16 @@
     padding: 20px;
     text-align: center;
     margin-bottom: 30px;
+    animation: bounce 1s infinite alternate; /* Add the bounce animation */
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
   }
   
   .faqs-title {

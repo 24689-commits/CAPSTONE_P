@@ -28,7 +28,10 @@ const {cookies} = useCookies()
 
 export default {
   computed: {
-    ...mapState(["wishlist"]),
+    ...mapState(["wishlist"]) || cookies.get("LegitUser"),
+  },
+  mounted() {
+    this.whishlist
   },
   methods: {
     ...mapActions(["removeFromWishlist", "fetchUserBookings", "addUserBooking"]),
@@ -43,7 +46,7 @@ export default {
           return this.addUserBooking({
             userId: this.user.userId, 
             data: bookingData,
-          });
+          }) || cookies.get("LegitUser");
         });
 
         const results = await Promise.all(promises);
@@ -63,6 +66,9 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  height: 100vh;
+}
 .card-img-top {
   width: 100px;
   height: 100px;
