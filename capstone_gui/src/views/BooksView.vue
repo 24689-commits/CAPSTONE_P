@@ -24,11 +24,10 @@
       <div class="row" v-if="filteredBooks.length">
         <div class="col-lg-4" v-for="book in filteredBooks" :key="book.bookID">
           <div class="card mb-4">
-            <img :src="book.bookUrl" class="card-img-top img-fluid"  :alt="book.bookName" style="height:200px;" />
+            <img :src="book.bookUrl" class="card-img-top img-fluid mx-auto"  :alt="book.bookName" style="height:200px;" />
             <div class="card-body">
               <h6 class="card-title-bold">{{ book.bookName }}</h6>
               <h6 class="card-text">Author: {{ book.author }}</h6>
-              <h6 class="card-title">Category: {{ book.category }}</h6>
               <button class="btn btn-primary view" @click="viewDetails(book)">View More</button>
               <button class="btn btn-secondary" @click="addToWishlist(book.bookID)">Add to Wishlist</button>
             </div>
@@ -128,7 +127,7 @@ export default {
 
 <style scoped>
 .image-fluid{
-  background-image: url('https://i.postimg.cc/j56F9jgh/solid-light-grey-simple-background-767953.jpg');
+  background-image: url('https://i.imgur.com/mfTtsuL.jpg');
 }
 .container {
   display: flex;
@@ -162,6 +161,7 @@ export default {
 }
 
 .card-img-top {
+  width: 200px;
   height: 200px;
   object-fit: cover;
 }

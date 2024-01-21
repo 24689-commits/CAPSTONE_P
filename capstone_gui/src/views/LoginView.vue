@@ -4,9 +4,9 @@
       <div class="row g-0">
         <div class="col-md-6">
           <img
-            src="https://i.postimg.cc/hjGv0VTy/2221e8be-f780-4528-b1c1-19fbce13f220.jpg0"
+            src="https://i.imgur.com/HQTA4Wb.jpg"
             class="img-fluid"
-            alt="Profile Image"
+            alt="Profile Image" loading="lazy"
           />
         </div>
         <div class="col-md-6">
@@ -249,7 +249,7 @@ export default {
 }
 
 .image-fluid {
-  background-image: url('https://i.postimg.cc/j56F9jgh/solid-light-grey-simple-background-767953.jpg');
+  background-image: url('https://i.imgur.com/mfTtsuL.jpg');
   height: 90vh;
   display: flex;
   justify-content: center;

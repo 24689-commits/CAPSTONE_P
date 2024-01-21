@@ -46,7 +46,7 @@
   
   <style scoped>
   .background{
-    background-color: #D2D2D2;
+    background-image: url('https://i.imgur.com/mfTtsuL.jpg');
   }
   .faqs-container {
     max-width: 800px;
@@ -60,7 +60,7 @@
     padding: 20px;
     text-align: center;
     margin-bottom: 30px;
-    animation: bounce 1s infinite alternate; /* Add the bounce animation */
+    animation: bounce 1s infinite alternate;
   }
   
   @keyframes bounce {

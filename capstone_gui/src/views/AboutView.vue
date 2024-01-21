@@ -46,7 +46,7 @@
 
 <style scoped>
 .image-fluid{
-  background-image: url('https://i.postimg.cc/j56F9jgh/solid-light-grey-simple-background-767953.jpg');
+  background-image: url('https://i.imgur.com/mfTtsuL.jpg');
 }
 .container {
   max-width: 1200px;

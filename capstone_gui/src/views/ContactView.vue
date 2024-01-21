@@ -115,7 +115,7 @@
   
   <style>
   #contact{
-    background-color: #D2D2D2;
+  background-image: url('https://i.imgur.com/mfTtsuL.jpg');
   }
   
   div h1{

@@ -67,7 +67,7 @@ export default {
 <style scoped>
 .background {
   height: 90vh;
-  background-color: #d2d2d2;
+  background-image: url('https://i.imgur.com/mfTtsuL.jpg');
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,4 +1,5 @@
 <template>
+  <div class="image">
   <div class="container">
     <div v-if="wishlist.length > 0">
       <h2>Your Wishlist</h2>
@@ -19,6 +20,7 @@
       <p>Your wishlist is empty.</p>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -69,8 +71,14 @@ export default {
 .container{
   height: 100vh;
 }
+.image{
+  background-image: url('https://i.imgur.com/mfTtsuL.jpg');
+}
 .card-img-top {
   width: 100px;
   height: 100px;
+}
+p{
+  font-size: 40px;
 }
 </style>
