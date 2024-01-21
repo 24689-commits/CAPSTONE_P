@@ -166,7 +166,7 @@ export default {
   object-fit: cover;
 }
 .card {
-  margin-top: 20px;
+  margin-top: 21x;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
   background-color: rgb(226, 222, 216);
